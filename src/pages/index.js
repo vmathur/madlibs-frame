@@ -3,7 +3,7 @@ import Head from 'next/head';
 
 export default function Home() {
   let BASE_URL =
-    "https://6ab9aaa4-b85e-46d6-a695-25b4eaa8d0e3-00-344ts98rxqp68.spock.replit.dev";
+    "https://madlibs-frame.vercel.app/";
 
   return (
     <div>

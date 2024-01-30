@@ -13,9 +13,9 @@ export default async function handler (req,res){
   let html = ''
 
   if (choice === 1) {
-    html = generateFarcasterFrame("https://farcaster-frame-psi.vercel.app/world.jpg", choice)
+    html = generateFarcasterFrame("https://madlibs-frame.vercel.app/world.jpg", choice)
   } else {
-    html = generateFarcasterFrame("https://farcaster-frame-psi.vercel.app/world.jpg", choice)
+    html = generateFarcasterFrame("https://madlibs-frame.vercel.app/world.jpg", choice)
   }
 
   return res.status(200).setHeader('Content-Type', 'text/html').send(html)
