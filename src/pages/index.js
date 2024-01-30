@@ -2,9 +2,8 @@ import { BASE_URL } from '@/utils'
 import Head from 'next/head';
 
 export default function Home() {
-  let BASE_URL =
-    "https://madlibs-frame.vercel.app/";
-
+  let BASE_URL = process.env.BASE_URL
+ 
   return (
     <div>
       <Head>

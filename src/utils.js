@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://madlibs-frame.vercel.app/'
+export const BASE_URL = process.env.BASE_URL
 
 // generate an html page with the relevant opengraph tags
 export function generateFarcasterFrame(image, choice) {

@@ -1,21 +1,21 @@
 import { generateFarcasterFrame } from '@/utils'
+const BASE_URL = process.env.BASE_URL;
 
 export default async function handler (req,res){
   if (req.method !== 'POST') {
-    res.status(405).json({ error: 'Method Not Derp' })
+    res.status(405).json({ error: 'Method Not Allowed' })
     return
   }
 
   const signedMessage = req.body;
-  console.log(signedMessage)
   const choice = signedMessage.untrustedData.buttonIndex
-
+  console.log(choice)
+  
   let html = ''
-
   if (choice === 1) {
-    html = generateFarcasterFrame("https://madlibs-frame.vercel.app/world.jpg", choice)
+    html = generateFarcasterFrame(BASE_URL+"world.jpg", choice)
   } else {
-    html = generateFarcasterFrame("https://madlibs-frame.vercel.app/world.jpg", choice)
+    html = generateFarcasterFrame(BASE_URL+"world.jpg", choice)
   }
 
   return res.status(200).setHeader('Content-Type', 'text/html').send(html)
