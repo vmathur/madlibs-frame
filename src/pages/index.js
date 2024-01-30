@@ -1,12 +1,12 @@
 import { BASE_URL } from '@/utils'
-import Head from 'next/head'
+import Head from 'next/head';
 
 export default function Home() {
   let BASE_URL =
     "https://6ab9aaa4-b85e-46d6-a695-25b4eaa8d0e3-00-344ts98rxqp68.spock.replit.dev";
 
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <meta property="og:title" content="Madlibs" />
         <meta property="og:image" content={`${BASE_URL}/hello.jpg`} />
