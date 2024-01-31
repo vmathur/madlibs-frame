@@ -1,4 +1,4 @@
-import { generateFarcasterFrame, generateEndFrame } from '@/utils'
+import { generateFarcasterFrame } from '@/utils'
 import { kv } from '@vercel/kv';
 
 const BASE_URL = process.env.BASE_URL;
@@ -9,15 +9,9 @@ export default async function handler (req,res){
     return
   }
 
-  console.log(req.query)
-  if(req.query.state){
-    console.log('theres state')
-    // if(state===done){
-      return res.status(302).setHeader('Location', `${BASE_URL}`).send('Redirecting');
-  }
-
   const signedMessage = req.body;
   const choice = signedMessage.untrustedData.buttonIndex
+  console.log(choice)
 
   try {
     const round = await kv.get('round');
@@ -28,8 +22,7 @@ export default async function handler (req,res){
 
   let html = ''
   if (choice === 1) {
-    html = generateEndFrame()
-    // html = generateFarcasterFrame(BASE_URL+"hello.jpg", choice)
+    html = generateFarcasterFrame(BASE_URL+"round-1-1.jpg", choice)
   } else{
     html = generateFarcasterFrame(BASE_URL+"world.jpg", choice)
   }
