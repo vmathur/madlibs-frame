@@ -35,13 +35,13 @@ export default async function handler (req,res){
   }
   let html = ''
 
+  let typeIndex = storyWordTypeOrder[round-1]
+  let type = wordTypeMap[typeIndex]
+
   console.log('round '+round)
   console.log('choice '+choice)
   console.log('screen '+req.query.screen)
   console.log('type '+typeIndex)
-
-  let typeIndex = storyWordTypeOrder[round-1]
-  let type = wordTypeMap[typeIndex]
 
   if(req.query.screen && req.query.screen==='1'){
     html = await generateRandomFarcasterFrame(type) 
