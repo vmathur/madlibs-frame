@@ -1,4 +1,4 @@
-import { generateFarcasterFrame, generateEndFrame } from '@/utils'
+import { generateFarcasterFrame, generateEndFrame, generateRandomFarcasterFrame } from '@/utils'
 import { kv } from '@vercel/kv';
 
 const BASE_URL = process.env.BASE_URL;
@@ -27,11 +27,21 @@ export default async function handler (req,res){
   }
 
   let html = ''
-  if (choice === 1) {
-    html = generateEndFrame()
-    // html = generateFarcasterFrame(BASE_URL+"hello.jpg", choice)
-  } else{
-    html = generateFarcasterFrame(BASE_URL+"world.jpg", choice)
+  console.log(req.query.screen)
+  if(req.query.screen && req.query.screen==='1'){
+    html = generateRandomFarcasterFrame() 
+  }else if(req.query.screen && req.query.screen==='2'){
+    //todo store the choice;
+    // if (choice === 1) {
+    //   //todo
+    // } else if (choice === 2){
+    //   //todo
+    // } else if (choice ===3 ){
+    //   //todo
+    // } else{
+    //   //todo
+    // }
+    html = generateEndFrame();
   }
 
   return res.status(200).setHeader('Content-Type', 'text/html').send(html)

@@ -11,7 +11,7 @@ export default function Frame() {
             <meta property="fc:frame" content="vNext" />
             <meta property="fc:frame:image" content={`${BASE_URL}welcome.jpg`} />
             <meta property="fc:frame:button:1" content="Play" />
-            <meta property="fc:frame:post_url" content={`${BASE_URL}api/post`} />
+            <meta property="fc:frame:post_url" content={`${BASE_URL}api/post?screen=1`} />
         </Head>
         Frame
         </div>

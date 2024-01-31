@@ -23,7 +23,8 @@ export function generateFarcasterFrame(image, choice) {
   `
 }
 
-export function generateRandomFarcasterFrame(image) {
+export function generateRandomFarcasterFrame() {
+  let image = BASE_URL+'game.jpg';
   const word1 = 'a'
   const word2 = 'b';
   const word3 = 'c';
@@ -38,7 +39,7 @@ export function generateRandomFarcasterFrame(image) {
       <meta property="fc:frame:button:2" content="${word2}" />
       <meta property="fc:frame:button:3" content="${word3}" />
       <meta property="fc:frame:button:3" content="🔄 More options" />
-      <meta property="fc:frame:post_url" content="${BASE_URL}/api/post" />
+      <meta property="fc:frame:post_url" content="${BASE_URL}/api/post?screen=2" />
     <body>
     </body>
     </html>
