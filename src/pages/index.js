@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 const developerUrl = 'https://warpcast.com/vmathur';
 const farcasterBaseProfileUrl = 'https://warpcast.com/';
-const gameUrl = 'https://google.com'
+const gameUrl = 'https://warpcast.com/vmathur/0xa8dbba40'
 const githubUrl = 'https://github.com/vmathur/madlibs-frame'
 
 export default function Home() {
