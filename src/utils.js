@@ -43,6 +43,23 @@ export function generateEndFrame() {
   `
 }
 
+export function generateRoundOverFrame() {
+  let image = BASE_URL+'roundOver.jpg'
+  return `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta name="fc:frame" content="vNext" />
+      <meta name="fc:frame:image" content="${image}" />
+      <meta name="fc:frame:button:1" content="See results" />
+      <meta name="fc:frame:button:1:action" content="post_redirect">
+      <meta name="fc:frame:post_url" content="${BASE_URL}/api/post?state=done" />
+    <body>
+    </body>
+    </html>
+  `
+}
+
 export function generateFarcasterFrame(image, choice) {
   return `
     <!DOCTYPE html>
@@ -67,7 +84,6 @@ export function generateFarcasterFrame(image, choice) {
 async function getWord(type){
   const apiUrl = 'https://api.api-ninjas.com/v1/randomword?type='+type; // Replace with your API endpoint
   const apiKey = '7+3g7iiysipWcwzyopjvKA==vmtMx1li43hUsZBO'; // Replace with your actual API key
-  console.log(apiUrl)
   const axiosConfig = {
     headers: {
       'X-Api-Key': apiKey,
