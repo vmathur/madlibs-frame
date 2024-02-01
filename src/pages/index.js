@@ -47,7 +47,7 @@ export default function Home() {
 }
 
 function getValue(value){
-  return value ? <u className='contributed'>{value}</u> : '____';
+  return value ? <u className='contributed'>{value}</u> : <span className='contributed'>____</span>;
 }
 
 function UserWordsComponent({ userWords }) {
