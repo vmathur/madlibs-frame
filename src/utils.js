@@ -65,6 +65,23 @@ export function generateRoundOverFrame() {
   `
 }
 
+export function generateAlreadyPlayedFrame() {
+  let image = BASE_URL+'already-played.jpg'
+  return `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta name="fc:frame" content="vNext" />
+      <meta name="fc:frame:image" content="${image}" />
+      <meta name="fc:frame:button:1" content="See results" />
+      <meta name="fc:frame:button:1:action" content="post_redirect">
+      <meta name="fc:frame:post_url" content="${BASE_URL}/api/post?state=done" />
+    <body>
+    </body>
+    </html>
+  `
+}
+
 export function generateFarcasterFrame(image, choice) {
   return `
     <!DOCTYPE html>

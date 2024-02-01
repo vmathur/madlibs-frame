@@ -1,4 +1,4 @@
-import { generateEndFrame, generateRandomFarcasterFrame, generateRoundOverFrame } from '@/utils'
+import { generateEndFrame, generateRandomFarcasterFrame, generateRoundOverFrame, generateAlreadyPlayedFrame } from '@/utils'
 import { kv } from '@vercel/kv';
 import { init, fetchQuery } from "@airstack/node";
 
@@ -45,7 +45,13 @@ export default async function handler (req,res){
   if(wordIndex>=wordOrder.length){
     let html = generateRoundOverFrame();
     return res.status(200).setHeader('Content-Type', 'text/html').send(html)
-  }  
+  }
+  
+  let userPlayed = await checkIfUserPlayed(username)
+  if (userPlayed) {
+    let html = generateAlreadyPlayedFrame();
+    return res.status(200).setHeader('Content-Type', 'text/html').send(html)
+  }
 
   let html = ''
 
@@ -95,7 +101,6 @@ async function saveWord(word, type, username){
     if(!userWords){
       userWords={}
     }
-    console.log(userWords)
     userWords[word] = username
     kv.set('user-words',userWords)
   } catch (error) {
@@ -117,4 +122,21 @@ async function getFarcasterUsername(fid){
   }`;
   const { data, error } = await fetchQuery(query);
   return data.Socials.Social[0].profileName;
+}
+
+async function checkIfUserPlayed(username){
+  try {
+    let userWords = await kv.get('user-words')
+    if(!userWords){
+      userWords={}
+    }
+    if (Object.values(userWords).includes(username)) {
+      return true
+    }else{
+      return false
+    }
+
+  } catch (error) {
+    console.error(error)
+  }
 }
