@@ -22,8 +22,7 @@ export default async function handler (req,res){
 
   if(req.query.state){
     console.log('trying to redirect')
-      return res.status(302).setHeader('Location', `${BASE_URL}`).send('Redirecting');
-      // return res.status(302).setHeader('Location', `https://vmathur.com`).send('Redirecting');
+    return res.status(302).setHeader('Location', `${BASE_URL}`).send('Redirecting');
   }
 
   const signedMessage = req.body;
