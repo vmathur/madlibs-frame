@@ -22,8 +22,8 @@ export default async function handler (req,res){
 
   if(req.query.state){
     console.log('trying to redirect')
-    // return res.status(302).setHeader('Location', `${BASE_URL}`).send('Redirecting');
-    return res.redirect('https://google.com',302)
+    return res.status(302).setHeader('Location', `${BASE_URL}`).send('Redirecting');
+    // return res.redirect('https://google.com',302)
   }
 
   const signedMessage = req.body;
