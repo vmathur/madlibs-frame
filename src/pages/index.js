@@ -23,8 +23,8 @@ export default function Home() {
   if (isLoading) return <p>Loading...</p>
 
   return (
-    <div>
-      <h1>Madlibs</h1>
+    <div className='main'>
+      <h1>Madcaster</h1>
       <h2>The Adventure of the {getValue(adjective[0])} {getValue(noun[0])}</h2>
       <div>Once upon a time in a {getValue(adjective[1])} {getValue(noun[1])}, there lived a {getValue(adjective[0])} {getValue(noun[0])}. This {getValue(noun[0])} was known throughout the land for their incredible {getValue(adjective[2])} {getValue(noun[2])}. One day, they decided to embark on a(n) {getValue(adjective[3])} adventure.</div>
       {/* <div>They packed their [Noun] with all the necessary [Plural Noun] and set off on their journey. Along the way, they encountered a [Adjective] [Animal] who offered to join them on their quest. Together, they faced many [Adjective] challenges and overcame them with their [Adjective] [Plural Noun].</div>
@@ -35,5 +35,5 @@ export default function Home() {
 }
 
 function getValue(value){
-  return value ? value : '___';
+  return value ? <u>{value}</u> : '____';
 }

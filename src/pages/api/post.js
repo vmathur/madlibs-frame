@@ -25,6 +25,7 @@ export default async function handler (req,res){
   }
 
   const signedMessage = req.body;
+  let fid = signedMessage.untrustedData.fid
   const choice = signedMessage.untrustedData.buttonIndex
 
   let wordIndex = 0;
@@ -38,6 +39,7 @@ export default async function handler (req,res){
     console.error(error)
   }
 
+  console.log(wordIndex)
   if(wordIndex>=wordOrder.length){
     let html = generateRoundOverFrame();
     return res.status(200).setHeader('Content-Type', 'text/html').send(html)
@@ -61,13 +63,13 @@ export default async function handler (req,res){
     }else{
       if (choice === 1) {
         //todo store req.query.word_1
-        saveWord(req.query.word_1, type)
+        saveWord(req.query.word_1, type, fid)
         html = generateEndFrame();
       } else if (choice === 2){
-        saveWord(req.query.word_2, type)
+        saveWord(req.query.word_2, type, fid)
         html = generateEndFrame();
       } else if (choice ===3 ){
-        saveWord(req.query.word_3, type)
+        saveWord(req.query.word_3, type, fid)
         html = generateEndFrame();
       }
 
@@ -84,9 +86,11 @@ export default async function handler (req,res){
   return res.status(200).setHeader('Content-Type', 'text/html').send(html)
 }
 
-async function saveWord(word, type){
+async function saveWord(word, type, fid){
   try {
     await kv.lpush(type, word)
+    //todo store the words that users selected
+    // await kv.lpush('users-words', {fid: fid, word: word})
   } catch (error) {
     console.error(error)
   }
