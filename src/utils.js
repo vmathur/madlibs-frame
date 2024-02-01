@@ -43,7 +43,7 @@ export function generateEndFrame() {
     <head>
       <meta name="fc:frame" content="vNext" />
       <meta name="fc:frame:image" content="${image}" />
-      <meta name="fc:frame:button:1" content="See results" />
+      <meta name="fc:frame:button:1" content="See the story" />
       <meta name="fc:frame:button:1:action" content="post_redirect">
       <meta name="fc:frame:post_url" content="https://madlibs-frame.vercel.app/api/post?state=done" />
     <body>
@@ -60,7 +60,7 @@ export function generateRoundOverFrame() {
     <head>
       <meta name="fc:frame" content="vNext" />
       <meta name="fc:frame:image" content="${image}" />
-      <meta name="fc:frame:button:1" content="See results" />
+      <meta name="fc:frame:button:1" content="See the story" />
       <meta name="fc:frame:button:1:action" content="post_redirect">
       <meta name="fc:frame:post_url" content="https://madlibs-frame.vercel.app/api/post?state=done" />
     <body>
@@ -78,7 +78,7 @@ export function generateAlreadyPlayedFrame() {
       <meta name="fc:frame" content="vNext" />
       <meta name="fc:frame:image" content="${image}" />
       <meta name="fc:frame:post_url" content="https://madlibs-frame.vercel.app/api/post?state=done" />
-      <meta name="fc:frame:button:1" content="See results">
+      <meta name="fc:frame:button:1" content="See the story">
       <meta name="fc:frame:button:1:action" content="post_redirect">
     <body>
     </body>
