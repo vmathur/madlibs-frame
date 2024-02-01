@@ -9,8 +9,7 @@ const wordTypeMap = {
   3 : 'adjective'
 }
 
-// const storyString = `Once upon a time in a ${adjective[0]} ${noun[0]}, there lived a ${adjective[1]} ${noun[1]}. This ${noun[1]} was known throughout the land for their incredible ${adjective[2]} ${noun[2]}. One day, they decided to embark on a(n) ${adjective[3]} adventure.`
-const wordOrder = [3,1,3,1,3,1,3];
+const wordOrder = [3,1,3,1,3,1,3,1,1,3,3,3,1];
 
 export default async function handler (req,res){
   if (req.method !== 'POST') {
