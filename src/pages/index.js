@@ -30,11 +30,11 @@ export default function Home() {
   if (isLoading) return <p>Loading...</p>
   return (
     <div className='main'>
-      {/* <h1>Madcaster</h1> */}
       <span className="game-section">
-        <h2 className="section-title">The Adventure of the {getValue(adjective[0])} {getValue(noun[0])}</h2>
-        <p className='section-1'>Once upon a time in a(n) {getValue(adjective[1])} {getValue(noun[1])}, there lived a {getValue(adjective[0])} {getValue(noun[0])}. This {getValue(noun[0])} was known throughout the land for their incredible {getValue(adjective[2])} {getValue(noun[2])}. One day, they decided to embark on a(n) {getValue(adjective[3])} adventure.</p>
-        <p className='section-2'>They packed their {getValue(noun[3])} with all the necessary {getValue(noun[4])} and set off on their journey. Along the way, they encountered a(n) {getValue(adjective[4])} horse who offered to join them on their quest. Together, they faced many {getValue(adjective[5])} challenges and overcame them with their {getValue(adjective[6])} {getValue(noun[5])}.</p>
+        <h2 className="section-title">The Legend of the {getValue(noun[0])}</h2>
+        <p>Once upon a time in a(n) {getValue(adjective[0])} kingdom, there lived a brave {getValue(noun[0])}. This {getValue(noun[0])} had a(n) {getValue(adjective[1])} companion, a(n) {getValue(noun[1])} who was always {getValue(adjective[2])}. Together, they embarked on a(n) {getValue(adjective[3])} adventure to find the legendary {getValue(noun[2])}.</p>
+        <p>Along the way, they encountered a(n) {getValue(adjective[4])} dragon and a(n) {getValue(adjective[5])} witch. With their {getValue(noun[3])} and {getValue(noun[4])}, they defeated the villains and finally reached the hidden {getValue(noun[2])}, where they discovered {getValue(adjective[6])} treasures beyond their wildest dreams. The {getValue(noun[0])} and their {getValue(noun[1])} became heroes in the {getValue(adjective[7])} kingdom, and their epic tale was passed down through generations.</p>
+        <p>Years later, the {getValue(noun[1])} had a(n) {getValue(adjective[8])} family, and they all cherished the {getValue(adjective[9])} legacy of their ancestors. The {getValue(noun[0])} and {getValue(noun[1])}s descendants continued to protect the {getValue(adjective[7])} kingdom, ensuring peace for generations to come.</p>
       </span>
       <br></br>
       {userWords && <b>Contributors</b>}

@@ -12,7 +12,7 @@ const wordTypeMap = {
   3 : 'adjective'
 }
 
-const wordOrder = [3,1,3,1,3,1,3,1,1,3,3,3,1];
+const wordOrder = [1,3,3,1,3,3,1,3,3,1,1,3,3,3,3];
 
 export default async function handler (req,res){
   if (req.method !== 'POST') {
