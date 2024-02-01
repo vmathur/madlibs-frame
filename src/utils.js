@@ -1,13 +1,15 @@
 export const BASE_URL = process.env.BASE_URL
 const axios = require('axios');
-
+const fs = require('fs');
+const path = require('path');
 
 export async function generateRandomFarcasterFrame(type) {
   let image = BASE_URL+'game.jpg';
   
-  let word_1 = await getWord(type)
-  let word_2 = await getWord(type)
-  let word_3 = await getWord(type)
+  let words = await getWords(type);
+  let word_1 = words[0];
+  let word_2 = words[1];
+  let word_3 = words[2];
 
   return `
     <!DOCTYPE html>
@@ -81,22 +83,29 @@ export function generateFarcasterFrame(image, choice) {
   `
 }
 
-async function getWord(type){
-  const apiUrl = 'https://api.api-ninjas.com/v1/randomword?type='+type; // Replace with your API endpoint
-  const apiKey = '7+3g7iiysipWcwzyopjvKA==vmtMx1li43hUsZBO'; // Replace with your actual API key
-  const axiosConfig = {
-    headers: {
-      'X-Api-Key': apiKey,
-    },
-  };
+async function getWords(type){
+  // Read the CSV file synchronously (you can use asynchronous methods if needed)
+  let filePath = './src/words/'+type+'s.csv'
 
-  let word = axios.get(apiUrl, axiosConfig)
-  .then((response) => {
-    const responseData = response.data;
-    return responseData.word
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
-  return word
+  const csvData = fs.readFileSync(filePath, 'utf8');
+
+  // Split the CSV data into an array of words using newline as the delimiter
+  const wordsArray = csvData.split('\n').filter(Boolean); // filter out empty strings
+
+  // Function to select 3 random words from the array
+  function getRandomWords(array, count) {
+    const randomWords = [];
+    while (randomWords.length < count && array.length > 0) {
+      const randomIndex = Math.floor(Math.random() * array.length);
+      randomWords.push(array.splice(randomIndex, 1)[0]);
+    }
+    return randomWords;
+  }
+
+  // Get 3 random words
+  const randomWords = getRandomWords(wordsArray, 3);
+
+  // Log the selected random words
+  console.log(randomWords);
+  return randomWords
 }
