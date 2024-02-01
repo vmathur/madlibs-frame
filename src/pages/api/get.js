@@ -12,9 +12,9 @@ export default async function handler (req,res){
     let noun = ['_','_','_','_']
     let verb = ['_','_','_','_']
     try {
-        adjective = await kv.lrange('adjective', 0, -1);
-        noun = await kv.lrange('noun', 0, -1);
-        verb = await kv.lrange('verb', 0, -1);  
+        adjective = (await kv.lrange('adjective', 0, -1)).reverse();
+        noun = (await kv.lrange('noun', 0, -1)).reverse();
+        verb = (await kv.lrange('verb', 0, -1)).reverse();  
     } catch (error) {
         console.error(error)
     }
