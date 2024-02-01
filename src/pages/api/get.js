@@ -19,9 +19,17 @@ export default async function handler (req,res){
         console.error(error)
     }
 
+    let userWords={}
+    try {
+        userWords = await kv.get('user-words')
+    } catch (error) {
+        console.error(error)
+    }
+
     return res.status(200).send({
         adjective:adjective,
         noun:noun,
-        verb:verb
+        verb:verb,
+        userWords: userWords
     })
 }

@@ -1,7 +1,5 @@
 export const BASE_URL = process.env.BASE_URL
-const axios = require('axios');
 const fs = require('fs');
-const path = require('path');
 
 export async function generateRandomFarcasterFrame(type) {
   let image = BASE_URL+'game.jpg';
@@ -106,6 +104,5 @@ async function getWords(type){
   const randomWords = getRandomWords(wordsArray, 3);
 
   // Log the selected random words
-  console.log(randomWords);
   return randomWords
 }

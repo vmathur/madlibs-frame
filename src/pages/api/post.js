@@ -1,7 +1,10 @@
 import { generateEndFrame, generateRandomFarcasterFrame, generateRoundOverFrame } from '@/utils'
 import { kv } from '@vercel/kv';
+import { init, fetchQuery } from "@airstack/node";
 
+const AIRSTACK_KEY = process.env.AIRSTACK_KEY;
 const BASE_URL = process.env.BASE_URL;
+init(AIRSTACK_KEY);
 
 const wordTypeMap = {
   1 : 'noun',
@@ -25,6 +28,7 @@ export default async function handler (req,res){
 
   const signedMessage = req.body;
   let fid = signedMessage.untrustedData.fid
+  let username = await getFarcasterUsername(fid);
   const choice = signedMessage.untrustedData.buttonIndex
 
   let wordIndex = 0;
@@ -38,7 +42,6 @@ export default async function handler (req,res){
     console.error(error)
   }
 
-  console.log(wordIndex)
   if(wordIndex>=wordOrder.length){
     let html = generateRoundOverFrame();
     return res.status(200).setHeader('Content-Type', 'text/html').send(html)
@@ -49,10 +52,10 @@ export default async function handler (req,res){
   let typeIndex = wordOrder[wordIndex]
   let type = wordTypeMap[typeIndex]
 
-  console.log('wordIndex '+wordIndex)
-  console.log('choice '+choice)
-  console.log('screen '+req.query.screen)
-  console.log('type '+type)
+  // console.log('wordIndex '+wordIndex)
+  // console.log('choice '+choice)
+  // console.log('screen '+req.query.screen)
+  // console.log('type '+type)
 
   if(req.query.screen && req.query.screen==='1'){
     html = await generateRandomFarcasterFrame(type) 
@@ -62,13 +65,13 @@ export default async function handler (req,res){
     }else{
       if (choice === 1) {
         //todo store req.query.word_1
-        saveWord(req.query.word_1, type, fid)
+        saveWord(req.query.word_1, type, username)
         html = generateEndFrame();
       } else if (choice === 2){
-        saveWord(req.query.word_2, type, fid)
+        saveWord(req.query.word_2, type, username)
         html = generateEndFrame();
       } else if (choice ===3 ){
-        saveWord(req.query.word_3, type, fid)
+        saveWord(req.query.word_3, type, username)
         html = generateEndFrame();
       }
 
@@ -85,12 +88,33 @@ export default async function handler (req,res){
   return res.status(200).setHeader('Content-Type', 'text/html').send(html)
 }
 
-async function saveWord(word, type, fid){
+async function saveWord(word, type, username){
   try {
     await kv.lpush(type, word)
-    //todo store the words that users selected
-    // await kv.lpush('users-words', {fid: fid, word: word})
+    let userWords = await kv.get('user-words')
+    if(!userWords){
+      userWords={}
+    }
+    console.log(userWords)
+    userWords[word] = username
+    kv.set('user-words',userWords)
   } catch (error) {
     console.error(error)
   }
+}
+
+
+async function getFarcasterUsername(fid){
+  const query = `{
+    Socials(
+      input: {filter: {userId: {_eq: "${fid}"}, dappName: {_eq: farcaster}}, blockchain: ethereum}
+    ) {
+      Social {
+        dappName
+        profileName
+      }
+    }
+  }`;
+  const { data, error } = await fetchQuery(query);
+  return data.Socials.Social[0].profileName;
 }
