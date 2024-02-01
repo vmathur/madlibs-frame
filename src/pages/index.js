@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 const developerUrl = 'https://warpcast.com/vmathur';
 const farcasterBaseProfileUrl = 'https://warpcast.com/';
 const gameUrl = 'https://google.com'
+const githubUrl = 'https://github.com/vmathur/madlibs-frame'
 
 export default function Home() {
   let BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
@@ -38,9 +39,10 @@ export default function Home() {
       <br></br>
       {userWords && <b>Contributors</b>}
       {userWords && <UserWordsComponent userWords={userWords} />}
+      <br></br>
       <span className='footer-section'>
       <div className='footer'>Play <a href={gameUrl}>here</a> on warpcaster</div>
-      <div className='footer'>Built by <a href={developerUrl}>vmathur</a></div>
+      <div className='footer'>Built by <a href={developerUrl}>vmathur</a>. Code on <a href={githubUrl}>github</a></div>
       </span>
     </div>
   );
