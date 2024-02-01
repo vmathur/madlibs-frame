@@ -113,7 +113,6 @@ async function getWords(type){
       console.error('Error reading directory:', err);
       return;
     }
-  
     // Filter out only the files (excluding directories)
     const filesOnly = files.filter(file => fs.statSync(file).isFile());
   

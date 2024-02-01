@@ -121,7 +121,7 @@ async function getFarcasterUsername(fid){
     }
   }`;
   const { data, error } = await fetchQuery(query);
-  return data.Socials.Social[0].profileName;
+  return data ? data.Socials.Social[0].profileName : '';
 }
 
 async function checkIfUserPlayed(username){
