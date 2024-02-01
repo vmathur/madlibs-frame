@@ -3,6 +3,11 @@ const fs = require('fs');
 
 export async function generateRandomFarcasterFrame(type) {
   let image = BASE_URL+'game.jpg';
+  if(type==='noun'){
+    image = BASE_URL+'game-noun.jpg';
+  }else if(type==='adjective'){
+    image = BASE_URL+'game-adjective.jpg'; 
+  }
   
   let words = await getWords(type);
   let word_1 = words[0];

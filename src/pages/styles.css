@@ -5,6 +5,10 @@ body {
     margin: 0 auto;
 }
 
-.game-section{
-    color:blue;
+.contributed{
+    color: blue;
+}
+
+.footer-section{
+    color: gray;
 }

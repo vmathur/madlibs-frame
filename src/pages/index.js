@@ -36,16 +36,18 @@ export default function Home() {
         <p className='section-2'>They packed their {getValue(noun[3])} with all the necessary {getValue(noun[4])} and set off on their journey. Along the way, they encountered a {getValue(adjective[4])} horse who offered to join them on their quest. Together, they faced many {getValue(adjective[5])} challenges and overcame them with their {getValue(adjective[6])} {getValue(noun[5])}.</p>
       </span>
       <br></br>
-      {userWords && <h2>Contributors</h2>}
+      {userWords && <b>Contributors</b>}
       {userWords && <UserWordsComponent userWords={userWords} />}
+      <span className='footer-section'>
       <div className='footer'>Play <a href={gameUrl}>here</a> on warpcaster</div>
       <div className='footer'>Built by <a href={developerUrl}>vmathur</a></div>
+      </span>
     </div>
   );
 }
 
 function getValue(value){
-  return value ? <u>{value}</u> : '____';
+  return value ? <u className='contributed'>{value}</u> : '____';
 }
 
 function UserWordsComponent({ userWords }) {
@@ -54,7 +56,7 @@ function UserWordsComponent({ userWords }) {
       <ul>
         {Object.entries(userWords).map(([key, value]) => (
           <li key={key}>
-            <strong>{key}</strong>: <a href={farcasterBaseProfileUrl+value}>{value}</a>
+            <strong className='contributed'>{key}</strong>: <a href={farcasterBaseProfileUrl+value}>{value}</a>
           </li>
         ))}
       </ul>
