@@ -1,5 +1,6 @@
 export const BASE_URL = process.env.BASE_URL
 const fs = require('fs');
+const path = require('path');
 
 export async function generateRandomFarcasterFrame(type) {
   let image = BASE_URL+'game.jpg';
@@ -104,8 +105,25 @@ export function generateFarcasterFrame(image, choice) {
 }
 
 async function getWords(type){
+  const currentDirectory = process.cwd();
+
+  // Read the current directory
+  fs.readdir(currentDirectory, (err, files) => {
+    if (err) {
+      console.error('Error reading directory:', err);
+      return;
+    }
+  
+    // Filter out only the files (excluding directories)
+    const filesOnly = files.filter(file => fs.statSync(file).isFile());
+  
+    // Print the list of files
+    console.log('List of files in the current directory:');
+    filesOnly.forEach(file => console.log(file));
+  });
   // Read the CSV file synchronously (you can use asynchronous methods if needed)
   let filePath = './src/words/'+type+'s.csv'
+  // let filePath = rootDirectory+'words/'+type+'s.csv'
 
   const csvData = fs.readFileSync(filePath, 'utf8');
 
