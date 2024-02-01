@@ -1,6 +1,9 @@
 export const BASE_URL = process.env.BASE_URL
 const fs = require('fs');
 const path = require('path');
+import nounList from "./words/nouns"
+import adjectiveList from "./words/adjectives"
+
 
 export async function generateRandomFarcasterFrame(type) {
   let image = BASE_URL+'game.jpg';
@@ -105,43 +108,25 @@ export function generateFarcasterFrame(image, choice) {
 }
 
 async function getWords(type){
-  const currentDirectory = process.cwd();
-
-  // Read the current directory
-  fs.readdir(currentDirectory, (err, files) => {
-    if (err) {
-      console.error('Error reading directory:', err);
-      return;
-    }
-    // Filter out only the files (excluding directories)
-    const filesOnly = files.filter(file => fs.statSync(file).isFile());
-  
-    // Print the list of files
-    console.log('List of files in the current directory:');
-    filesOnly.forEach(file => console.log(file));
-  });
-  // Read the CSV file synchronously (you can use asynchronous methods if needed)
-  let filePath = './src/words/'+type+'s.csv'
-  // let filePath = rootDirectory+'words/'+type+'s.csv'
-
-  const csvData = fs.readFileSync(filePath, 'utf8');
-
-  // Split the CSV data into an array of words using newline as the delimiter
-  const wordsArray = csvData.split('\n').filter(Boolean); // filter out empty strings
-
-  // Function to select 3 random words from the array
-  function getRandomWords(array, count) {
-    const randomWords = [];
-    while (randomWords.length < count && array.length > 0) {
-      const randomIndex = Math.floor(Math.random() * array.length);
-      randomWords.push(array.splice(randomIndex, 1)[0]);
-    }
-    return randomWords;
+  let wordList = []
+  if(type==='noun'){
+    wordList=nounList
+  }else if(type==='adjective'){
+    wordList=adjectiveList
   }
 
-  // Get 3 random words
-  const randomWords = getRandomWords(wordsArray, 3);
+  const randomIndices = [];
+  const randomWords = [];
 
-  // Log the selected random words
+  while (randomIndices.length < 3) {
+    const randomIndex = Math.floor(Math.random() * wordList.length);
+
+    if (!randomIndices.includes(randomIndex)) {
+      randomIndices.push(randomIndex);
+      randomWords.push(wordList[randomIndex]);
+    }
+  }
+
+  return randomWords;
   return randomWords
 }
