@@ -30,13 +30,25 @@ export default function Home() {
   if (isLoading) return <p>Loading...</p>
   return (
     <div className='main'>
-      <span className="game-section">
+      <span className="game-section" >
         <h2 className="section-title">The Legend of the {getValue(noun[0])}</h2>
         <p>Once upon a time in a(n) {getValue(adjective[0])} kingdom, there lived a brave {getValue(noun[0])}. This {getValue(noun[0])} had a(n) {getValue(adjective[1])} companion, a(n) {getValue(noun[1])} who was always {getValue(adjective[2])}. Together, they embarked on a(n) {getValue(adjective[3])} adventure to find the legendary {getValue(noun[2])}.</p>
         <p>Along the way, they encountered a(n) {getValue(adjective[4])} dragon and a(n) {getValue(adjective[5])} witch. With their {getValue(noun[3])} and {getValue(noun[4])}, they defeated the villains and finally reached the hidden {getValue(noun[2])}, where they discovered {getValue(adjective[6])} treasures beyond their wildest dreams. The {getValue(noun[0])} and their {getValue(noun[1])} became heroes in the {getValue(adjective[7])} kingdom, and their epic tale was passed down through generations.</p>
         <p>Years later, the {getValue(noun[1])} had a(n) {getValue(adjective[8])} family, and they all cherished the {getValue(adjective[9])} legacy of their ancestors. The {getValue(noun[0])} and {getValue(noun[1])}s descendants continued to protect the {getValue(adjective[7])} kingdom, ensuring peace for generations to come.</p>
       </span>
+      <span className='story-pic'>
       <br></br>
+      <img
+        src="/story-2-1.jpg"
+        alt="Story Image"
+        style={{
+          maxWidth: '80%',
+          height: 'auto',
+          borderRadius: '10px' // Adjust the radius value as per your preference
+        }}
+      /></span>     
+       <br></br>
+       <br></br>
       {userWords && <b>Contributors</b>}
       {userWords && <UserWordsComponent userWords={userWords} />}
       <br></br>
